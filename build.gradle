@@ -1,0 +1,34 @@
+plugins {
+    id 'java'
+}
+
+apply plugin: 'java'
+apply plugin: 'application'
+group 'com.github.darrime'
+version '1.0-SNAPSHOT'
+
+
+sourceCompatibility = 11
+targetCompatibility = 11
+
+
+repositories {
+    mavenCentral()
+}
+
+compileJava.options.encoding = 'UTF-8'
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+
+    implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.25'
+
+}
+
+test {
+    useJUnitPlatform()
+}
