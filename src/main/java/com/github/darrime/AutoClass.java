@@ -1,40 +1,32 @@
 package com.github.darrime;
 
 
-import java.sql.*;
+import com.github.darrime.addOn.ClassList;
 
-
-import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class AutoClass {
-    public static void loading() {
-        Scanner sc = new Scanner(System.in);
-        Calendar cal = Calendar.getInstance();
-        int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
-        int li = 2;
+    public static void getClassTime() {
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm");
+        Date time = new Date();
+        String time1 = format.format(time);
 
-        if(dayOfWeek % 2 == 0) {
-            li = 6;
-        } else if(dayOfWeek % 2 != 0){
-            li = 7;
-        }
-        String[] subList = new String[li];
-        System.out.println("과목 입력: ");
-        for(int i = 0; i < li; i++) {
-            subList[i] = sc.nextLine();
-        }
-        System.out.println("오늘의 과목은: ");
-        for(int i = 0; i < li; i++) {
-            ClassList.loading(subList[i]);
-            System.out.println(subList[i]);
 
-        }
+        System.out.println(time1);
     }
-
-
-
     public static void main(String[] args)  {
-        System.out.println(DataBase.init());
+        Scanner sc = new Scanner(System.in);
+        System.out.println("몇교시 입니까?");
+        int classTime = sc.nextInt();
+
+        String dayOfweek = DayOfWeek.getDayOfWeek();
+
+        System.out.println(dayOfweek);
+
+        String subject = DataBase.init(dayOfweek, classTime);
+        ClassList.loading(subject);
+        System.out.println(subject);
     }
 }
