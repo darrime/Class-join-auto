@@ -28,6 +28,11 @@ dependencies {
     implementation group: 'mysql', name: 'mysql-connector-java', version: '8.0.25'
 
 }
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.github.darrime.AutoClass'
+    }
+}
 
 test {
     useJUnitPlatform()
